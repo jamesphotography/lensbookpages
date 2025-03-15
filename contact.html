@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - 镜书 LensBook</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://raw.githubusercontent.com/jamesphotography/lensbookpages/main/lensbook-Logo.png" alt="LensBook Logo">
+            </div>
+            <h1>联系我们</h1>
+            <div class="subtitle">我们随时恭候您的反馈与建议</div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="about-author">
+                <h2>关于作者</h2>
+                <div class="author-content">
+                    <div class="author-profile">
+                        <img src="https://raw.githubusercontent.com/jamesphotography/lensbookpages/main/james.jpg" alt="James Zhen Yu" class="author-image">
+                        <div class="author-text">
+                            <p>詹姆斯·于震（James Zhen Yu）是一位专业的风景摄影师，致力于捕捉自然之美，并分享他的摄影知识和技巧。他精通摄影设备，包括滤镜、三脚架和相机包，并且擅长教授实用的拍摄技巧和最佳相机设置。</p>
+                            <p>他主持了视频系列《摄影评片》，为摄影师的作品提供建设性反馈，帮助爱好者提升技能。詹姆斯还是一位畅销书作者，他的三部曲《詹姆斯的风景摄影笔记 I、II、III》销量超过10万册。</p>
+                            <p>自2008年移居澳大利亚以来，他一直从事专业摄影工作，足迹遍布全球，拍摄多样的风景。通过他的作品和教学，他希望激发摄影爱好者的热情和创造力，引导他们在摄影之旅中不断进步。</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.youtube.com/@JamesZhenYu" target="_blank" class="youtube-link">
+                            <span class="social-icon">📺</span> YouTube 频道
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-methods">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>电子邮件</h3>
+                    <form id="emailForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="subject">主题：</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">内容：</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">发送邮件</button>
+                    </form>
+                    <p class="contact-note">邮件将发送至：james@jamesphotography.com.au</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">💬</div>
+                    <h3>微信支持</h3>
+                    <img src="https://via.placeholder.com/200x200" alt="微信二维码" class="qr-code">
+                    <p class="contact-note">微信号：JameYZ001</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+    <!-- 在</body>标签前添加 -->
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            const mailtoLink = `mailto:james@jamesphotography.com.au?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+            window.location.href = mailtoLink;
+        });
+    </script>
+    </body>
+</html>

@@ -38,9 +38,15 @@ header {
 }
 
 .logo img {
-  width: 200px;
-  height: auto;
-  border-radius: 20px;
+    width: 200px;
+    height: auto;
+    border-radius: 20px;
+}
+
+footer .logo img {
+    width: 120px;
+    height: auto;
+    border-radius: 10px;
 }
 
 h1 {
@@ -332,4 +338,135 @@ footer {
   .screenshot-item {
     width: 250px; /* 保持宽度，但换行后可能显示 1-2 个 */
   }
+}
+
+.contact-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.contact-card {
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.contact-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+.contact-link {
+    display: inline-block;
+    color: var(--primary);
+    font-size: 1.2rem;
+    text-decoration: none;
+    margin: 15px 0;
+    padding: 10px 20px;
+    background-color: white;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.contact-link:hover {
+    transform: translateY(-2px);
+}
+
+.contact-note {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 15px;
+}
+
+.qr-code {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+.contact-form {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.submit-button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: var(--primary-light);
+}
+
+.author-profile {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.author-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.author-text {
+    flex: 1;
+}
+
+.author-text p {
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .author-profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .author-image {
+        width: 180px;
+        height: 180px;
+        margin-bottom: 20px;
+    }
 }

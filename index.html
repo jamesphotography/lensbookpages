@@ -188,25 +188,17 @@
       </div>
     </div>
   </section>
-
-  <footer>
-    <div class="container">
-      <div class="logo">
-        <img src="https://via.placeholder.com/80/FFFFFF/003153?text=LB" alt="LensBook Logo" style="height: 50px;">
-      </div>
-
-      <div class="footer-links">
-        <a href="http://blog.jamesphotography.com.au">关于我们</a>
-        <a href="privacy.html">隐私政策</a>
-        <a href="#">使用协议</a>
-        <a href="#">联系我们</a>
-      </div>
-
-      <div class="copyright">
-        © 2025 LensBook. 保留所有权利。
-      </div>
+  
     </div>
   </footer>
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
 </body>
 
 </html>
