@@ -3,213 +3,508 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>镜书 LensBook - 公开测试</title>
+    <title>LensBook - 旅行照片转游记助手 | 公开测试</title>
     <style>
-        * {
+        :root {
+            --primary: #003153;
+            --primary-light: #1A4B7A;
+            --secondary: #6FCF97;
+            --accent: #F2994A;
+            --background: #F5F7FA;
+            --card-bg: #E8ECF1;
+            --text-primary: #003153;
+            --text-secondary: #4A6579;
+        }
+        
+        body {
+            font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--background);
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
-
-        /* 页眉导航样式 */
-        header {
-            background-color: #1a1a1a;
-            padding: 20px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        
+        .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
         .logo {
-            color: #fff;
-            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .logo img {
+            height: 80px;
+            border-radius: 20px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .testflight-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .testflight-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        .testflight-note {
+            font-size: 0.9rem;
+            margin-top: 15px;
+            opacity: 0.8;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin: 0;
+            color: var(--primary);
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-top: 10px;
+        }
+        
+        .screenshot {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .screenshot img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .feature-desc {
+            color: var(--text-secondary);
+        }
+        
+        .how-it-works {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .step {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background-color: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
         }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
+        
+        .step h3 {
+            margin-top: 10px;
+            margin-bottom: 15px;
+            color: var(--primary);
         }
-        .nav-links li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-        }
-        .nav-links li a:hover {
-            color: #ff6f61;
-        }
-
-        /* 主推区样式 */
-        .hero {
-            background-color: #f4f4f4;
+        
+        .beta-info {
+            background-color: var(--primary-light);
+            color: white;
+            border-radius: 10px;
+            padding: 30px;
             text-align: center;
-            padding: 60px 20px;
+            margin-top: 40px;
         }
-        .hero h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #333;
+        
+        .beta-info h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
         }
-        .hero p {
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .cta-button {
-            background-color: #ff6f61;
-            color: #fff;
-            padding: 12px 24px;
-            text-decoration: none;
+        
+        .beta-limit {
+            display: inline-block;
+            background-color: rgba(255,255,255,0.2);
+            padding: 10px 15px;
             border-radius: 5px;
-            font-size: 18px;
+            margin: 10px 10px 0 0;
         }
-        .cta-button:hover {
-            background-color: #e65a50;
-        }
-
-        /* 功能介绍网格样式 */
-        .features {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .feature-card {
-            text-align: center;
-            padding: 20px;
-        }
-        .feature-card img {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 15px;
-        }
-        .feature-card h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        .feature-card p {
-            font-size: 16px;
-            color: #666;
-        }
-
-        /* 测试指导样式 */
-        .how-to-join {
-            background-color: #fff;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .how-to-join h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        .how-to-join ol {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: left;
-            font-size: 16px;
-            color: #666;
-            line-height: 1.6;
-        }
-        .how-to-join ol li {
-            margin-bottom: 15px;
-        }
-
-        /* 页脚样式 */
+        
         footer {
-            background-color: #1a1a1a;
-            color: #fff;
+            background-color: var(--primary);
+            color: white;
             text-align: center;
-            padding: 20px;
+            padding: 30px 0;
+            margin-top: 60px;
         }
-        footer a {
-            color: #ff6f61;
+        
+        .footer-links {
+            margin: 20px 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 10px;
             text-decoration: none;
         }
-        footer a:hover {
+        
+        .footer-links a:hover {
             text-decoration: underline;
         }
-
-        /* 响应式设计 */
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 20px;
+        }
+        
+        .roles {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .role-tag {
+            background-color: var(--primary-light);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .styles {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .style-tag {
+            background-color: var(--accent);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* 新添加的应用截图展示区样式 */
+        .app-screenshots {
+            margin-top: 60px;
+        }
+        
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .screenshot-item {
+            text-align: center;
+        }
+        
+        .screenshot-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border: 5px solid white;
+        }
+        
+        .screenshot-title {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .screenshot-desc {
+            color: var(--text-secondary);
+            margin-top: 5px;
+            font-size: 0.95rem;
+        }
+        
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 28px;
+            h1 {
+                font-size: 2rem;
             }
-            .nav-links {
-                flex-direction: column;
-                gap: 10px;
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .feature-card {
+                padding: 20px;
+            }
+            
+            .screenshot-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 页眉导航 -->
     <header>
-        <nav>
-            <div class="logo">镜书 LensBook</div>
-            <ul class="nav-links">
-                <li><a href="#home">首页</a></li>
-                <li><a href="#features">功能</a></li>
-                <li><a href="#how-to-join">如何加入</a></li>
-                <li><a href="#contact">联系</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <div class="logo">
+                <img src="https://via.placeholder.com/160/003153/FFFFFF?text=LB" alt="LensBook Logo">
+            </div>
+            <h1>LensBook</h1>
+            <div class="subtitle">将旅行照片智能转化为精美游记</div>
+            <a href="https://testflight.apple.com/join/Hx73Uw2T" class="testflight-button">立即参与测试</a>
+            <div class="testflight-note">需要在 iOS 设备上安装 TestFlight 应用</div>
+        </div>
     </header>
-
-    <!-- 主推区 -->
-    <section id="home" class="hero">
-        <h1>镜书：将旅行照片智能转化为精美游记，记录每一刻难忘瞬间。</h1>
-        <p>借助 AI 技术，LensBook 镜书将您的旅行照片转化为独特的游记故事，随时记录美好回忆。</p>
-        <a href="https://testflight.apple.com/join/Hx73Uw2T" class="cta-button">加入测试</a>
-    </section>
-
-    <!-- 功能介绍网格 -->
-    <section id="features" class="features">
-        <div class="feature-card">
-            <img src="https://via.placeholder.com/60" alt="智能照片识别图标">
-            <h3>智能照片识别</h3>
-            <p>自动识别照片内容，生成准确的故事描述。</p>
+    
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>旅行照片的全新体验</h2>
+                <p>LensBook 不只是照片管理，而是旅行记忆的智能化升级</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">📷</div>
+                    <div class="feature-title">智能照片识别</div>
+                    <div class="feature-desc">自动识别照片内容，生成准确的故事描述。</div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌤️</div>
+                    <div class="feature-title">天气数据整合</div>
+                    <div class="feature-desc">根据拍摄时间和地点，自动添加天气信息。</div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎭</div>
+                    <div class="feature-title">个性化角色与风格</div>
+                    <div class="feature-desc">选择旅行者、摄影师等角色，生成不同风格游记。</div>
+                </div>
+            </div>
+            
+            <!-- 新增应用截图展示区 -->
+            <div class="app-screenshots">
+                <div class="section-title">
+                    <h2>应用界面预览</h2>
+                    <p>探索LensBook直观易用的界面设计</p>
+                </div>
+                
+                <div class="screenshot-grid">
+                    <div class="screenshot-item">
+                        <img src="https://via.placeholder.com/500x900/E8ECF1/003153?text=时间轴视图" alt="时间轴视图">
+                        <div class="screenshot-title">时间轴视图</div>
+                        <div class="screenshot-desc">按时间顺序浏览您的所有旅行照片和游记</div>
+                    </div>
+                    
+                    <div class="screenshot-item">
+                        <img src="https://via.placeholder.com/500x900/E8ECF1/003153?text=照片详情视图" alt="照片详情视图">
+                        <div class="screenshot-title">照片详情视图</div>
+                        <div class="screenshot-desc">查看照片详情和AI生成的多种风格游记</div>
+                    </div>
+                    
+                    <div class="screenshot-item">
+                        <img src="https://via.placeholder.com/500x900/E8ECF1/003153?text=日视图" alt="日视图">
+                        <div class="screenshot-title">日视图</div>
+                        <div class="screenshot-desc">查看单日行程路线图和所有照片集锦</div>
+                    </div>
+                    
+                    <div class="screenshot-item">
+                        <img src="https://via.placeholder.com/500x900/E8ECF1/003153?text=海报分享" alt="海报分享">
+                        <div class="screenshot-title">海报分享</div>
+                        <div class="screenshot-desc">将您的旅行回忆制作成精美海报随时分享</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="feature-card">
-            <img src="https://via.placeholder.com/60" alt="天气数据整合图标">
-            <h3>天气数据整合</h3>
-            <p>根据拍摄时间和地点，自动添加天气信息。</p>
-        </div>
-        <div class="feature-card">
-            <img src="https://via.placeholder.com/60" alt="个性化角色图标">
-            <h3>个性化角色与风格</h3>
-            <p>选择旅行者、摄影师等角色，生成不同风格游记。</p>
+    </section>
+    
+    <section style="background-color: #f0f4f8;">
+        <div class="container">
+            <div class="section-title">
+                <h2>十种专业创作角色</h2>
+                <p>根据您的旅行风格和喜好选择最适合的创作视角</p>
+            </div>
+            
+            <div class="roles">
+                <div class="role-tag">✈️ 旅行者</div>
+                <div class="role-tag">🔭 观鸟者</div>
+                <div class="role-tag">📱 手机摄影师</div>
+                <div class="role-tag">📸 专业摄影师</div>
+                <div class="role-tag">🍜 美食博主</div>
+                <div class="role-tag">🏛️ 文化探索者</div>
+                <div class="role-tag">🌿 自然探索家</div>
+                <div class="role-tag">🎒 背包客</div>
+                <div class="role-tag">🏆 奢华旅行者</div>
+                <div class="role-tag">👴 夕阳红游侠</div>
+            </div>
+            
+            <div class="section-title" style="margin-top: 60px;">
+                <h2>多种写作风格</h2>
+                <p>为您的旅行故事选择最合适的表达方式</p>
+            </div>
+            
+            <div class="styles">
+                <div class="style-tag">📝 标准文案</div>
+                <div class="style-tag">❤️ 小红书风格</div>
+                <div class="style-tag">💡 知乎风格</div>
+                <div class="style-tag">✨ 朋友圈风格</div>
+                <div class="style-tag">🎵 抖音风格</div>
+                <div class="style-tag">⚡ 微博风格</div>
+                <div class="style-tag">📺 B站风格</div>
+                <div class="style-tag">📚 豆瓣风格</div>
+                <div class="style-tag">📰 公众号风格</div>
+                <div class="style-tag">🏮 古风游记</div>
+                <div class="style-tag">🖼️ 摄影评论</div>
+            </div>
         </div>
     </section>
-
-    <!-- 测试指导 -->
-    <section id="how-to-join" class="how-to-join">
-        <h2>如何加入测试</h2>
-        <ol>
-            <li>点击上方的“加入测试”按钮。</li>
-            <li>打开 TestFlight 链接：<a href="https://testflight.apple.com/join/Hx73Uw2T">https://testflight.apple.com/join/Hx73Uw2T</a>。</li>
-            <li>若未安装 TestFlight 应用，系统会提示您前往 App Store 下载。</li>
-            <li>安装 TestFlight 后，按照提示下载 LensBook 测试版（需 iOS 18 或更高版本）。</li>
-            <li>开始使用 LensBook，并通过应用内反馈功能分享您的体验！</li>
-        </ol>
+    
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>如何加入测试</h2>
+            </div>
+            
+            <div class="how-it-works">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>点击上方的"加入测试"按钮。</h3>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>打开 TestFlight 链接：<a href="https://testflight.apple.com/join/Hx73Uw2T" style="color:var(--primary);">https://testflight.apple.com/join/Hx73Uw2T</a></h3>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>若未安装 TestFlight 应用，系统会提示您前往 App Store 下载。</h3>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>安装 TestFlight 后，按照提示下载 LensBook 测试版（需 iOS 18 或更高版本）。</h3>
+                </div>
+            </div>
+            
+            <div class="beta-info">
+                <h3>内测版功能限制</h3>
+                <p>在公开测试阶段，我们有以下使用限制：</p>
+                <div>
+                    <span class="beta-limit">每位用户最多导入50张照片</span>
+                    <span class="beta-limit">每张照片最多生成5篇游记</span>
+                    <span class="beta-limit">需要iOS 18或更高版本</span>
+                </div>
+                <a href="https://testflight.apple.com/join/Hx73Uw2T" class="testflight-button" style="margin-top: 30px;">立即加入测试</a>
+            </div>
+        </div>
     </section>
-
-    <!-- 页脚联系方式 -->
-    <footer id="contact">
-        <p>有任何问题？请联系我们：<a href="mailto:james@jamesphotography.com.au">james@jamesphotography.com.au</a></p>
+    
+    <footer>
+        <div class="container">
+            <div class="logo">
+                <img src="https://via.placeholder.com/80/FFFFFF/003153?text=LB" alt="LensBook Logo" style="height: 50px;">
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">隐私政策</a>
+                <a href="#">使用协议</a>
+                <a href="#">联系我们</a>
+            </div>
+            
+            <div class="copyright">
+                © 2025 LensBook. 保留所有权利。
+            </div>
+        </div>
     </footer>
 </body>
 </html>
