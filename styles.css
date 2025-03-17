@@ -511,3 +511,120 @@ footer {
   gap: 10px;
   margin: 30px 0;
 }
+
+/* 步骤卡片样式 */
+.step {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.step h3 {
+    color: var(--primary);
+    margin-top: 0;
+    border-bottom: 1px solid var(--secondary);
+    padding-bottom: 10px;
+}
+
+.step h4 {
+    color: var(--primary-light);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* 角色和风格标签 */
+.roles, .styles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.role-tag, .style-tag {
+    background-color: var(--primary-light);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.role-tag i {
+    margin-right: 5px;
+}
+
+/* 问答样式 */
+.qa-item {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.qa-item h3 {
+    color: var(--primary);
+    margin-top: 0;
+}
+
+/* 小技巧网格 */
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.tip-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    height: 100%;
+}
+
+.tip-card h3 {
+    color: var(--primary);
+    margin-top: 0;
+    border-bottom: 1px solid var(--secondary);
+    padding-bottom: 10px;
+}
+
+/* 提示和注意事项 */
+.note {
+    background-color: rgba(242, 153, 74, 0.1);
+    border-left: 4px solid var(--accent);
+    padding: 10px 15px;
+    margin: 15px 0;
+    border-radius: 0 4px 4px 0;
+}
+
+/* 引用块样式 */
+blockquote {
+    background-color: rgba(111, 207, 151, 0.1);
+    border-left: 4px solid var(--secondary);
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 0 4px 4px 0;
+    font-style: italic;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .roles, .styles {
+        gap: 8px;
+    }
+    
+    .role-tag, .style-tag {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+}
